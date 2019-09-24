@@ -6,6 +6,9 @@ KTH September 2019
 ## Day 1 - 24 Sep 2019
 Paul Graham : pgraham@nvidia.com
 
+Create Accounts on linuxacademy.com, developer.nvidia.com course.nvidia.com
+
+
 ### Session 1: Introduction to GPU Computing
 1. What to expect? - Overview on  GPU Stack, GPU Architecture, ways to GPU computing
 2. Full Stack Optimization  
@@ -75,6 +78,18 @@ CPU is a latency reducing Architecutre
    4. Productivity
 
 15. NGC Software Hub - GPU Optimized Software Hub
+
+
+### Introduction to OpenAcc
+https://app.linuxacademy.com/hands-on-labs/bddbc6db-9bb1-4b9d-96ed-4cf85e37e632
+
+
+
+### Lecture 2 Outline : 
+
+1. CPU and GPU Memories
+2. Cuda Unified Memory
+
 
 
 
