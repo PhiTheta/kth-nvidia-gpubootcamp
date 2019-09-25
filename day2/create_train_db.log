@@ -1,0 +1,10 @@
+libdc1394 error: Failed to initialize libdc1394
+2017-11-02 18:03:31 [DEBUG] 16 total lines in file
+2017-11-02 18:03:31 [INFO ] 16 valid lines in file
+2017-11-02 18:03:31 [DEBUG] Category 0 has 8 images.
+2017-11-02 18:03:31 [DEBUG] Category 1 has 8 images.
+2017-11-02 18:03:31 [DEBUG] 16 images loaded
+2017-11-02 18:03:31 [INFO ] 16 images written to database
+2017-11-02 18:03:31 [INFO ] Mean saved at "/jobs/20171102-180326-8901/mean.binaryproto"
+2017-11-02 18:03:31 [INFO ] Mean saved at "/jobs/20171102-180326-8901/mean.jpg"
+2017-11-02 18:03:31 [INFO ] Database created after 0 seconds.

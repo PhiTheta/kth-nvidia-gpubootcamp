@@ -1,0 +1,905 @@
+I0925 07:35:05.994740    94 caffe.cpp:680] This is NVCaffe 0.17.0 started at Wed Sep 25 07:35:05 2019
+I0925 07:35:05.994920    94 caffe.cpp:682] CuDNN version: 7102
+I0925 07:35:05.994926    94 caffe.cpp:683] CuBLAS version: 9000
+I0925 07:35:05.994930    94 caffe.cpp:684] CUDA version: 9000
+I0925 07:35:05.994935    94 caffe.cpp:685] CUDA driver version: 9020
+I0925 07:35:05.994941    94 caffe.cpp:686] Arguments:
+[0]: /usr/local/bin/caffe
+[1]: train
+[2]: --solver=/dli/data/digits/20190925-073504-fef4/solver.prototxt
+[3]: --gpu=0
+I0925 07:35:06.011472    94 upgrade_proto.cpp:1044] Attempting to upgrade input file specified using deprecated 'solver_type' field (enum)': /dli/data/digits/20190925-073504-fef4/solver.prototxt
+I0925 07:35:06.011498    94 upgrade_proto.cpp:1051] Successfully upgraded file specified using deprecated 'solver_type' field (enum) to 'type' field (string).
+W0925 07:35:06.011504    94 upgrade_proto.cpp:1053] Note that future Caffe releases will only support 'type' field (string) for a solver's type.
+I0925 07:35:06.028035    94 gpu_memory.cpp:105] GPUMemory::Manager initialized
+I0925 07:35:06.028538    94 gpu_memory.cpp:107] Total memory: 11996954624, Free: 11769413632, dev_info[0]: total=11996954624 free=11769413632
+I0925 07:35:06.028548    94 caffe.cpp:222] Using GPUs 0
+I0925 07:35:06.028802    94 caffe.cpp:226] GPU 0: Tesla K80
+I0925 07:35:06.028864    94 solver.cpp:40] Solver data type: FLOAT
+I0925 07:35:06.037830    94 solver.cpp:43] Initializing solver from parameters:
+base_lr: 0.01
+display: 1
+max_iter: 2
+lr_policy: "step"
+gamma: 0.1
+momentum: 0.9
+weight_decay: 0.0001
+stepsize: 1
+snapshot: 1
+snapshot_prefix: "snapshot"
+solver_mode: GPU
+device_id: 0
+net: "train_val.prototxt"
+train_state {
+level: 0
+stage: ""
+}
+type: "SGD"
+store_blobs_in_old_format: false
+I0925 07:35:06.037950    94 solver.cpp:84] Creating training net from net file: train_val.prototxt
+I0925 07:35:06.038344    94 net.cpp:456] The NetState phase (0) differed from the phase (1) specified by a rule in layer accuracy
+I0925 07:35:06.038529    94 net.cpp:79] Initializing net from parameters:
+state {
+phase: TRAIN
+level: 0
+stage: ""
+}
+layer {
+name: "train-data"
+type: "Data"
+top: "data"
+top: "label"
+include {
+phase: TRAIN
+}
+transform_param {
+mirror: true
+crop_size: 227
+mean_file: "/dli/data/digits/20171102-180326-8901/mean.binaryproto"
+}
+data_param {
+source: "/dli/data/digits/20171102-180326-8901/train_db"
+batch_size: 128
+backend: LMDB
+}
+}
+layer {
+name: "conv1"
+type: "Convolution"
+bottom: "data"
+top: "conv1"
+param {
+lr_mult: 1
+decay_mult: 1
+}
+param {
+lr_mult: 2
+decay_mult: 0
+}
+convolution_param {
+num_output: 96
+kernel_size: 11
+stride: 4
+weight_filler {
+type: "gaussian"
+std: 0.01
+}
+bias_filler {
+type: "constant"
+value: 0
+}
+}
+}
+layer {
+name: "relu1"
+type: "ReLU"
+bottom: "conv1"
+top: "conv1"
+}
+layer {
+name: "norm1"
+type: "LRN"
+bottom: "conv1"
+top: "norm1"
+lrn_param {
+local_size: 5
+alpha: 0.0001
+beta: 0.75
+}
+}
+layer {
+name: "pool1"
+type: "Pooling"
+bottom: "norm1"
+top: "pool1"
+pooling_param {
+pool: MAX
+kernel_size: 3
+stride: 2
+}
+}
+layer {
+name: "conv2"
+type: "Convolution"
+bottom: "pool1"
+top: "conv2"
+param {
+lr_mult: 1
+decay_mult: 1
+}
+param {
+lr_mult: 2
+decay_mult: 0
+}
+convolution_param {
+num_output: 256
+pad: 2
+kernel_size: 5
+group: 2
+weight_filler {
+type: "gaussian"
+std: 0.01
+}
+bias_filler {
+type: "constant"
+value: 0.1
+}
+}
+}
+layer {
+name: "relu2"
+type: "ReLU"
+bottom: "conv2"
+top: "conv2"
+}
+layer {
+name: "norm2"
+type: "LRN"
+bottom: "conv2"
+top: "norm2"
+lrn_param {
+local_size: 5
+alpha: 0.0001
+beta: 0.75
+}
+}
+layer {
+name: "pool2"
+type: "Pooling"
+bottom: "norm2"
+top: "pool2"
+pooling_param {
+pool: MAX
+kernel_size: 3
+stride: 2
+}
+}
+layer {
+name: "conv3"
+type: "Convolution"
+bottom: "pool2"
+top: "conv3"
+param {
+lr_mult: 1
+decay_mult: 1
+}
+param {
+lr_mult: 2
+decay_mult: 0
+}
+convolution_param {
+num_output: 384
+pad: 1
+kernel_size: 3
+weight_filler {
+type: "gaussian"
+std: 0.01
+}
+bias_filler {
+type: "constant"
+value: 0
+}
+}
+}
+layer {
+name: "relu3"
+type: "ReLU"
+bottom: "conv3"
+top: "conv3"
+}
+layer {
+name: "conv4"
+type: "Convolution"
+bottom: "conv3"
+top: "conv4"
+param {
+lr_mult: 1
+decay_mult: 1
+}
+param {
+lr_mult: 2
+decay_mult: 0
+}
+convolution_param {
+num_output: 384
+pad: 1
+kernel_size: 3
+group: 2
+weight_filler {
+type: "gaussian"
+std: 0.01
+}
+bias_filler {
+type: "constant"
+value: 0.1
+}
+}
+}
+layer {
+name: "relu4"
+type: "ReLU"
+bottom: "conv4"
+top: "conv4"
+}
+layer {
+name: "conv5"
+type: "Convolution"
+bottom: "conv4"
+top: "conv5"
+param {
+lr_mult: 1
+decay_mult: 1
+}
+param {
+lr_mult: 2
+decay_mult: 0
+}
+convolution_param {
+num_output: 256
+pad: 1
+kernel_size: 3
+group: 2
+weight_filler {
+type: "gaussian"
+std: 0.01
+}
+bias_filler {
+type: "constant"
+value: 0.1
+}
+}
+}
+layer {
+name: "relu5"
+type: "ReLU"
+bottom: "conv5"
+top: "conv5"
+}
+layer {
+name: "pool5"
+type: "Pooling"
+bottom: "conv5"
+top: "pool5"
+pooling_param {
+pool: MAX
+kernel_size: 3
+stride: 2
+}
+}
+layer {
+name: "fc6"
+type: "InnerProduct"
+bottom: "pool5"
+top: "fc6"
+param {
+lr_mult: 1
+decay_mult: 1
+}
+param {
+lr_mult: 2
+decay_mult: 0
+}
+inner_product_param {
+num_output: 4096
+weight_filler {
+type: "gaussian"
+std: 0.005
+}
+bias_filler {
+type: "constant"
+value: 0.1
+}
+}
+}
+layer {
+name: "relu6"
+type: "ReLU"
+bottom: "fc6"
+top: "fc6"
+}
+layer {
+name: "drop6"
+type: "Dropout"
+bottom: "fc6"
+top: "fc6"
+dropout_param {
+dropout_ratio: 0.5
+}
+}
+layer {
+name: "fc7"
+type: "InnerProduct"
+bottom: "fc6"
+top: "fc7"
+param {
+lr_mult: 1
+decay_mult: 1
+}
+param {
+lr_mult: 2
+decay_mult: 0
+}
+inner_product_param {
+num_output: 4096
+weight_filler {
+type: "gaussian"
+std: 0.005
+}
+bias_filler {
+type: "constant"
+value: 0.1
+}
+}
+}
+layer {
+name: "relu7"
+type: "ReLU"
+bottom: "fc7"
+top: "fc7"
+}
+layer {
+name: "drop7"
+type: "Dropout"
+bottom: "fc7"
+top: "fc7"
+dropout_param {
+dropout_ratio: 0.5
+}
+}
+layer {
+name: "fc8"
+type: "InnerProduct"
+bottom: "fc7"
+top: "fc8"
+param {
+lr_mult: 1
+decay_mult: 1
+}
+param {
+lr_mult: 2
+decay_mult: 0
+}
+inner_product_param {
+num_output: 2
+weight_filler {
+type: "gaussian"
+std: 0.01
+}
+bias_filler {
+type: "constant"
+value: 0
+}
+}
+}
+layer {
+name: "loss"
+type: "SoftmaxWithLoss"
+bottom: "fc8"
+bottom: "label"
+top: "loss"
+}
+I0925 07:35:06.038645    94 net.cpp:109] Using FLOAT as default forward math type
+I0925 07:35:06.038655    94 net.cpp:115] Using FLOAT as default backward math type
+I0925 07:35:06.038663    94 layer_factory.hpp:172] Creating layer 'train-data' of type 'Data'
+I0925 07:35:06.038671    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.039068    94 internal_thread.cpp:19] Starting 1 internal thread(s) on device 0
+I0925 07:35:06.039582    94 data_transformer.cpp:40] Loading mean file from: /dli/data/digits/20171102-180326-8901/mean.binaryproto
+I0925 07:35:06.040316   100 blocking_queue.cpp:40] Data layer prefetch queue empty
+I0925 07:35:06.045498    94 data_transformer.cpp:40] Loading mean file from: /dli/data/digits/20171102-180326-8901/mean.binaryproto
+I0925 07:35:06.050446    94 net.cpp:199] Created Layer train-data (0)
+I0925 07:35:06.050462    94 net.cpp:541] train-data -> data
+I0925 07:35:06.050489    94 net.cpp:541] train-data -> label
+I0925 07:35:06.050509    94 data_reader.cpp:58] Sample Data Reader threads: 1, out queues: 1, depth: 128
+I0925 07:35:06.050546    94 internal_thread.cpp:19] Starting 1 internal thread(s) on device 0
+I0925 07:35:06.051295   101 db_lmdb.cpp:36] Opened lmdb /dli/data/digits/20171102-180326-8901/train_db
+I0925 07:35:06.053403   101 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:06.053834    94 data_layer.cpp:199] [0] Output data size: 128, 3, 227, 227
+I0925 07:35:06.053849    94 data_transformer.cpp:40] Loading mean file from: /dli/data/digits/20171102-180326-8901/mean.binaryproto
+I0925 07:35:06.054994   101 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:06.056674   101 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:06.058647   101 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:06.060137   101 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:06.061619   101 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:06.061733    94 data_transformer.cpp:40] Loading mean file from: /dli/data/digits/20171102-180326-8901/mean.binaryproto
+I0925 07:35:06.063127   101 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:06.065259   101 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:06.067486    94 internal_thread.cpp:19] Starting 1 internal thread(s) on device 0
+I0925 07:35:06.067555    94 net.cpp:259] Setting up train-data
+I0925 07:35:06.067579    94 net.cpp:266] TRAIN Top shape for layer 0 'train-data' 128 3 227 227 (19787136)
+I0925 07:35:06.068253    94 net.cpp:266] TRAIN Top shape for layer 0 'train-data' 128 (128)
+I0925 07:35:06.068265    94 layer_factory.hpp:172] Creating layer 'conv1' of type 'Convolution'
+I0925 07:35:06.068274    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.068307    94 net.cpp:199] Created Layer conv1 (1)
+I0925 07:35:06.068316    94 net.cpp:571] conv1 <- data
+I0925 07:35:06.068329    94 net.cpp:541] conv1 -> conv1
+I0925 07:35:06.588786    94 net.cpp:259] Setting up conv1
+I0925 07:35:06.588822    94 net.cpp:266] TRAIN Top shape for layer 1 'conv1' 128 96 55 55 (37171200)
+I0925 07:35:06.588850    94 layer_factory.hpp:172] Creating layer 'relu1' of type 'ReLU'
+I0925 07:35:06.588857    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.588871    94 net.cpp:199] Created Layer relu1 (2)
+I0925 07:35:06.588878    94 net.cpp:571] relu1 <- conv1
+I0925 07:35:06.588886    94 net.cpp:526] relu1 -> conv1 (in-place)
+I0925 07:35:06.588912    94 net.cpp:259] Setting up relu1
+I0925 07:35:06.588919    94 net.cpp:266] TRAIN Top shape for layer 2 'relu1' 128 96 55 55 (37171200)
+I0925 07:35:06.588927    94 layer_factory.hpp:172] Creating layer 'norm1' of type 'LRN'
+I0925 07:35:06.588932    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.588958    94 net.cpp:199] Created Layer norm1 (3)
+I0925 07:35:06.588963    94 net.cpp:571] norm1 <- conv1
+I0925 07:35:06.588969    94 net.cpp:541] norm1 -> norm1
+I0925 07:35:06.589035    94 net.cpp:259] Setting up norm1
+I0925 07:35:06.589042    94 net.cpp:266] TRAIN Top shape for layer 3 'norm1' 128 96 55 55 (37171200)
+I0925 07:35:06.589048    94 layer_factory.hpp:172] Creating layer 'pool1' of type 'Pooling'
+I0925 07:35:06.589056    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.589067    94 net.cpp:199] Created Layer pool1 (4)
+I0925 07:35:06.589072    94 net.cpp:571] pool1 <- norm1
+I0925 07:35:06.589078    94 net.cpp:541] pool1 -> pool1
+I0925 07:35:06.589145    94 net.cpp:259] Setting up pool1
+I0925 07:35:06.589156    94 net.cpp:266] TRAIN Top shape for layer 4 'pool1' 128 96 27 27 (8957952)
+I0925 07:35:06.589166    94 layer_factory.hpp:172] Creating layer 'conv2' of type 'Convolution'
+I0925 07:35:06.589174    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.589195    94 net.cpp:199] Created Layer conv2 (5)
+I0925 07:35:06.589200    94 net.cpp:571] conv2 <- pool1
+I0925 07:35:06.589206    94 net.cpp:541] conv2 -> conv2
+I0925 07:35:06.596294    94 net.cpp:259] Setting up conv2
+I0925 07:35:06.596319    94 net.cpp:266] TRAIN Top shape for layer 5 'conv2' 128 256 27 27 (23887872)
+I0925 07:35:06.596359    94 layer_factory.hpp:172] Creating layer 'relu2' of type 'ReLU'
+I0925 07:35:06.596366    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.596374    94 net.cpp:199] Created Layer relu2 (6)
+I0925 07:35:06.596381    94 net.cpp:571] relu2 <- conv2
+I0925 07:35:06.596390    94 net.cpp:526] relu2 -> conv2 (in-place)
+I0925 07:35:06.596400    94 net.cpp:259] Setting up relu2
+I0925 07:35:06.596405    94 net.cpp:266] TRAIN Top shape for layer 6 'relu2' 128 256 27 27 (23887872)
+I0925 07:35:06.596411    94 layer_factory.hpp:172] Creating layer 'norm2' of type 'LRN'
+I0925 07:35:06.596416    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.596427    94 net.cpp:199] Created Layer norm2 (7)
+I0925 07:35:06.596432    94 net.cpp:571] norm2 <- conv2
+I0925 07:35:06.596438    94 net.cpp:541] norm2 -> norm2
+I0925 07:35:06.596487    94 net.cpp:259] Setting up norm2
+I0925 07:35:06.596494    94 net.cpp:266] TRAIN Top shape for layer 7 'norm2' 128 256 27 27 (23887872)
+I0925 07:35:06.596500    94 layer_factory.hpp:172] Creating layer 'pool2' of type 'Pooling'
+I0925 07:35:06.596506    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.596518    94 net.cpp:199] Created Layer pool2 (8)
+I0925 07:35:06.596523    94 net.cpp:571] pool2 <- norm2
+I0925 07:35:06.596527    94 net.cpp:541] pool2 -> pool2
+I0925 07:35:06.596580    94 net.cpp:259] Setting up pool2
+I0925 07:35:06.596586    94 net.cpp:266] TRAIN Top shape for layer 8 'pool2' 128 256 13 13 (5537792)
+I0925 07:35:06.596592    94 layer_factory.hpp:172] Creating layer 'conv3' of type 'Convolution'
+I0925 07:35:06.596597    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.596613    94 net.cpp:199] Created Layer conv3 (9)
+I0925 07:35:06.596618    94 net.cpp:571] conv3 <- pool2
+I0925 07:35:06.596623    94 net.cpp:541] conv3 -> conv3
+I0925 07:35:06.612234    94 net.cpp:259] Setting up conv3
+I0925 07:35:06.612253    94 net.cpp:266] TRAIN Top shape for layer 9 'conv3' 128 384 13 13 (8306688)
+I0925 07:35:06.612267    94 layer_factory.hpp:172] Creating layer 'relu3' of type 'ReLU'
+I0925 07:35:06.612273    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.612282    94 net.cpp:199] Created Layer relu3 (10)
+I0925 07:35:06.612287    94 net.cpp:571] relu3 <- conv3
+I0925 07:35:06.612294    94 net.cpp:526] relu3 -> conv3 (in-place)
+I0925 07:35:06.612303    94 net.cpp:259] Setting up relu3
+I0925 07:35:06.612308    94 net.cpp:266] TRAIN Top shape for layer 10 'relu3' 128 384 13 13 (8306688)
+I0925 07:35:06.612315    94 layer_factory.hpp:172] Creating layer 'conv4' of type 'Convolution'
+I0925 07:35:06.612320    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.612335    94 net.cpp:199] Created Layer conv4 (11)
+I0925 07:35:06.612340    94 net.cpp:571] conv4 <- conv3
+I0925 07:35:06.612346    94 net.cpp:541] conv4 -> conv4
+I0925 07:35:06.627447    94 net.cpp:259] Setting up conv4
+I0925 07:35:06.627465    94 net.cpp:266] TRAIN Top shape for layer 11 'conv4' 128 384 13 13 (8306688)
+I0925 07:35:06.627475    94 layer_factory.hpp:172] Creating layer 'relu4' of type 'ReLU'
+I0925 07:35:06.627482    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.627490    94 net.cpp:199] Created Layer relu4 (12)
+I0925 07:35:06.627496    94 net.cpp:571] relu4 <- conv4
+I0925 07:35:06.627501    94 net.cpp:526] relu4 -> conv4 (in-place)
+I0925 07:35:06.627511    94 net.cpp:259] Setting up relu4
+I0925 07:35:06.627517    94 net.cpp:266] TRAIN Top shape for layer 12 'relu4' 128 384 13 13 (8306688)
+I0925 07:35:06.627522    94 layer_factory.hpp:172] Creating layer 'conv5' of type 'Convolution'
+I0925 07:35:06.627527    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.627557    94 net.cpp:199] Created Layer conv5 (13)
+I0925 07:35:06.627562    94 net.cpp:571] conv5 <- conv4
+I0925 07:35:06.627568    94 net.cpp:541] conv5 -> conv5
+I0925 07:35:06.635578    94 net.cpp:259] Setting up conv5
+I0925 07:35:06.635594    94 net.cpp:266] TRAIN Top shape for layer 13 'conv5' 128 256 13 13 (5537792)
+I0925 07:35:06.635609    94 layer_factory.hpp:172] Creating layer 'relu5' of type 'ReLU'
+I0925 07:35:06.635615    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.635622    94 net.cpp:199] Created Layer relu5 (14)
+I0925 07:35:06.635628    94 net.cpp:571] relu5 <- conv5
+I0925 07:35:06.635634    94 net.cpp:526] relu5 -> conv5 (in-place)
+I0925 07:35:06.635643    94 net.cpp:259] Setting up relu5
+I0925 07:35:06.635648    94 net.cpp:266] TRAIN Top shape for layer 14 'relu5' 128 256 13 13 (5537792)
+I0925 07:35:06.635655    94 layer_factory.hpp:172] Creating layer 'pool5' of type 'Pooling'
+I0925 07:35:06.635659    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.635670    94 net.cpp:199] Created Layer pool5 (15)
+I0925 07:35:06.635674    94 net.cpp:571] pool5 <- conv5
+I0925 07:35:06.635680    94 net.cpp:541] pool5 -> pool5
+I0925 07:35:06.635741    94 net.cpp:259] Setting up pool5
+I0925 07:35:06.635751    94 net.cpp:266] TRAIN Top shape for layer 15 'pool5' 128 256 6 6 (1179648)
+I0925 07:35:06.635756    94 layer_factory.hpp:172] Creating layer 'fc6' of type 'InnerProduct'
+I0925 07:35:06.635763    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:06.635777    94 net.cpp:199] Created Layer fc6 (16)
+I0925 07:35:06.635782    94 net.cpp:571] fc6 <- pool5
+I0925 07:35:06.635788    94 net.cpp:541] fc6 -> fc6
+I0925 07:35:07.320057    94 net.cpp:259] Setting up fc6
+I0925 07:35:07.320094    94 net.cpp:266] TRAIN Top shape for layer 16 'fc6' 128 4096 (524288)
+I0925 07:35:07.320111    94 layer_factory.hpp:172] Creating layer 'relu6' of type 'ReLU'
+I0925 07:35:07.320119    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:07.320133    94 net.cpp:199] Created Layer relu6 (17)
+I0925 07:35:07.320142    94 net.cpp:571] relu6 <- fc6
+I0925 07:35:07.320149    94 net.cpp:526] relu6 -> fc6 (in-place)
+I0925 07:35:07.320163    94 net.cpp:259] Setting up relu6
+I0925 07:35:07.320169    94 net.cpp:266] TRAIN Top shape for layer 17 'relu6' 128 4096 (524288)
+I0925 07:35:07.320175    94 layer_factory.hpp:172] Creating layer 'drop6' of type 'Dropout'
+I0925 07:35:07.320180    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:07.320195    94 net.cpp:199] Created Layer drop6 (18)
+I0925 07:35:07.320201    94 net.cpp:571] drop6 <- fc6
+I0925 07:35:07.320206    94 net.cpp:526] drop6 -> fc6 (in-place)
+I0925 07:35:07.354724    94 net.cpp:259] Setting up drop6
+I0925 07:35:07.354760    94 net.cpp:266] TRAIN Top shape for layer 18 'drop6' 128 4096 (524288)
+I0925 07:35:07.354771    94 layer_factory.hpp:172] Creating layer 'fc7' of type 'InnerProduct'
+I0925 07:35:07.354779    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:07.354794    94 net.cpp:199] Created Layer fc7 (19)
+I0925 07:35:07.354800    94 net.cpp:571] fc7 <- fc6
+I0925 07:35:07.354810    94 net.cpp:541] fc7 -> fc7
+I0925 07:35:07.655133    94 net.cpp:259] Setting up fc7
+I0925 07:35:07.655169    94 net.cpp:266] TRAIN Top shape for layer 19 'fc7' 128 4096 (524288)
+I0925 07:35:07.655186    94 layer_factory.hpp:172] Creating layer 'relu7' of type 'ReLU'
+I0925 07:35:07.655194    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:07.655205    94 net.cpp:199] Created Layer relu7 (20)
+I0925 07:35:07.655211    94 net.cpp:571] relu7 <- fc7
+I0925 07:35:07.655220    94 net.cpp:526] relu7 -> fc7 (in-place)
+I0925 07:35:07.655236    94 net.cpp:259] Setting up relu7
+I0925 07:35:07.655243    94 net.cpp:266] TRAIN Top shape for layer 20 'relu7' 128 4096 (524288)
+I0925 07:35:07.655273    94 layer_factory.hpp:172] Creating layer 'drop7' of type 'Dropout'
+I0925 07:35:07.655279    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:07.655290    94 net.cpp:199] Created Layer drop7 (21)
+I0925 07:35:07.655295    94 net.cpp:571] drop7 <- fc7
+I0925 07:35:07.655300    94 net.cpp:526] drop7 -> fc7 (in-place)
+I0925 07:35:07.689872    94 net.cpp:259] Setting up drop7
+I0925 07:35:07.689910    94 net.cpp:266] TRAIN Top shape for layer 21 'drop7' 128 4096 (524288)
+I0925 07:35:07.689919    94 layer_factory.hpp:172] Creating layer 'fc8' of type 'InnerProduct'
+I0925 07:35:07.689927    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:07.689942    94 net.cpp:199] Created Layer fc8 (22)
+I0925 07:35:07.689949    94 net.cpp:571] fc8 <- fc7
+I0925 07:35:07.689958    94 net.cpp:541] fc8 -> fc8
+I0925 07:35:07.690959    94 net.cpp:259] Setting up fc8
+I0925 07:35:07.690975    94 net.cpp:266] TRAIN Top shape for layer 22 'fc8' 128 2 (256)
+I0925 07:35:07.690989    94 layer_factory.hpp:172] Creating layer 'loss' of type 'SoftmaxWithLoss'
+I0925 07:35:07.690995    94 layer_factory.hpp:184] Layer's types are Ftype:FLOAT Btype:FLOAT Fmath:FLOAT Bmath:FLOAT
+I0925 07:35:07.691011    94 net.cpp:199] Created Layer loss (23)
+I0925 07:35:07.691017    94 net.cpp:571] loss <- fc8
+I0925 07:35:07.691025    94 net.cpp:571] loss <- label
+I0925 07:35:07.691032    94 net.cpp:541] loss -> loss
+I0925 07:35:07.691151    94 net.cpp:259] Setting up loss
+I0925 07:35:07.691160    94 net.cpp:266] TRAIN Top shape for layer 23 'loss' (1)
+I0925 07:35:07.691165    94 net.cpp:270]     with loss weight 1
+I0925 07:35:07.691187    94 net.cpp:335] loss needs backward computation.
+I0925 07:35:07.691193    94 net.cpp:335] fc8 needs backward computation.
+I0925 07:35:07.691198    94 net.cpp:335] drop7 needs backward computation.
+I0925 07:35:07.691205    94 net.cpp:335] relu7 needs backward computation.
+I0925 07:35:07.691208    94 net.cpp:335] fc7 needs backward computation.
+I0925 07:35:07.691213    94 net.cpp:335] drop6 needs backward computation.
+I0925 07:35:07.691218    94 net.cpp:335] relu6 needs backward computation.
+I0925 07:35:07.691224    94 net.cpp:335] fc6 needs backward computation.
+I0925 07:35:07.691229    94 net.cpp:335] pool5 needs backward computation.
+I0925 07:35:07.691234    94 net.cpp:335] relu5 needs backward computation.
+I0925 07:35:07.691239    94 net.cpp:335] conv5 needs backward computation.
+I0925 07:35:07.691244    94 net.cpp:335] relu4 needs backward computation.
+I0925 07:35:07.691249    94 net.cpp:335] conv4 needs backward computation.
+I0925 07:35:07.691254    94 net.cpp:335] relu3 needs backward computation.
+I0925 07:35:07.691259    94 net.cpp:335] conv3 needs backward computation.
+I0925 07:35:07.691265    94 net.cpp:335] pool2 needs backward computation.
+I0925 07:35:07.691270    94 net.cpp:335] norm2 needs backward computation.
+I0925 07:35:07.691275    94 net.cpp:335] relu2 needs backward computation.
+I0925 07:35:07.691279    94 net.cpp:335] conv2 needs backward computation.
+I0925 07:35:07.691285    94 net.cpp:335] pool1 needs backward computation.
+I0925 07:35:07.691290    94 net.cpp:335] norm1 needs backward computation.
+I0925 07:35:07.691294    94 net.cpp:335] relu1 needs backward computation.
+I0925 07:35:07.691299    94 net.cpp:335] conv1 needs backward computation.
+I0925 07:35:07.691306    94 net.cpp:337] train-data does not need backward computation.
+I0925 07:35:07.691310    94 net.cpp:379] This network produces output loss
+I0925 07:35:07.691337    94 net.cpp:402] Top memory (TRAIN) required for data: 1064352776 diff: 1064352776
+I0925 07:35:07.691342    94 net.cpp:405] Bottom memory (TRAIN) required for data: 1064352768 diff: 1064352768
+I0925 07:35:07.691349    94 net.cpp:408] Shared (in-place) memory (TRAIN) by data: 341229568 diff: 341229568
+I0925 07:35:07.691352    94 net.cpp:411] Parameters memory (TRAIN) required for data: 227505672 diff: 227505672
+I0925 07:35:07.691380    94 net.cpp:414] Parameters shared memory (TRAIN) by data: 0 diff: 0
+I0925 07:35:07.691385    94 net.cpp:420] Network initialization done.
+I0925 07:35:07.691462    94 solver.cpp:54] Solver scaffolding done.
+I0925 07:35:07.692396    94 caffe.cpp:256] Starting Optimization
+I0925 07:35:07.692415    94 solver.cpp:433] Solving
+I0925 07:35:07.692422    94 solver.cpp:434] Learning Rate Policy: step
+I0925 07:35:07.692447    94 net.cpp:1408] [0] Reserving 227506176 bytes of shared learnable space for type FLOAT
+I0925 07:35:07.729007    94 solver.cpp:267] Initial Test started...
+I0925 07:35:07.729068    94 solver.cpp:272] Initial Test completed in 2.816e-06s
+I0925 07:35:07.729773   102 internal_thread.cpp:40] Restarting 4 internal thread(s) on device 0
+I0925 07:35:07.730459   102 internal_thread.cpp:19] Starting 1 internal thread(s) on device 0
+I0925 07:35:07.730530   102 data_transformer.cpp:40] Loading mean file from: /dli/data/digits/20171102-180326-8901/mean.binaryproto
+I0925 07:35:07.731343   103 common.cpp:528] NVML initialized, thread 103
+I0925 07:35:07.736455   102 data_transformer.cpp:40] Loading mean file from: /dli/data/digits/20171102-180326-8901/mean.binaryproto
+I0925 07:35:07.742125   102 data_transformer.cpp:40] Loading mean file from: /dli/data/digits/20171102-180326-8901/mean.binaryproto
+I0925 07:35:07.746807   102 data_transformer.cpp:40] Loading mean file from: /dli/data/digits/20171102-180326-8901/mean.binaryproto
+I0925 07:35:07.746870   103 common.cpp:550] NVML succeeded to set CPU affinity on device 0, thread 103
+I0925 07:35:07.747012   108 common.cpp:550] NVML succeeded to set CPU affinity on device 0, thread 108
+I0925 07:35:07.751471   102 data_reader.cpp:58] Data Reader threads: 3, out queues: 12, depth: 128
+I0925 07:35:07.751760   102 internal_thread.cpp:19] Starting 3 internal thread(s) on device 0
+I0925 07:35:07.752763   109 db_lmdb.cpp:36] Opened lmdb /dli/data/digits/20171102-180326-8901/train_db
+I0925 07:35:07.753674   110 db_lmdb.cpp:36] Opened lmdb /dli/data/digits/20171102-180326-8901/train_db
+I0925 07:35:07.754319   111 db_lmdb.cpp:36] Opened lmdb /dli/data/digits/20171102-180326-8901/train_db
+I0925 07:35:07.754762   102 data_layer.cpp:199] [0] Output data size: 128, 3, 227, 227
+I0925 07:35:07.754860   102 data_layer.cpp:105] [0] Parser threads: 3 (auto)
+I0925 07:35:07.754873   102 data_layer.cpp:107] [0] Transformer threads: 4 (auto)
+I0925 07:35:07.756474   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.757134   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.757788   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.758304   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.758756   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.759202   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.759649   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760092   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760099   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760103   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760107   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760112   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760116   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760120   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760124   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760128   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760133   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760138   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760140   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760144   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760149   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760154   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760175   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.760179   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.790488   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.796636   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.799957   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.805316   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.808336   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.811204   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.814247   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817343   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817363   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817373   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817381   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817390   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817399   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817406   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817414   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817420   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817428   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817435   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817441   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817448   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817456   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817462   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817469   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.817476   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.820545   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.823585   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.826622   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.829665   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.832684   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.835767   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.838727   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841811   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841826   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841835   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841845   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841851   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841861   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841868   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841876   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841882   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841889   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841897   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841902   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841908   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841917   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841922   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841928   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.841933   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.844849   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.847860   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.850812   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.855274   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.858268   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.861096   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.864023   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867008   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867027   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867034   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867044   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867054   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867064   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867071   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867079   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867085   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867094   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867100   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867106   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867113   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867121   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867128   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867136   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.867142   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.869978   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.873245   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.876109   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.879045   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.882091   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.885015   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.887257   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888772   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888782   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888787   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888792   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888797   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888801   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888805   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888809   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888813   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888818   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888823   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888826   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888830   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888834   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888839   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888842   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:07.888846   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.364549   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.425305   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.486122   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.549221   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.651525   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.757230   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.895851   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942836   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942872   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942880   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942888   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942896   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942904   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942912   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942919   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942927   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942936   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942945   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942951   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942960   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942968   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942975   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942983   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.942991   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.991945   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.993247   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:08.994592   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.010825   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.012194   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.013365   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.014657   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015810   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015823   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015831   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015839   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015848   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015857   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015864   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015872   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015880   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015889   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015897   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015904   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015911   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015919   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015926   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015933   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.015938   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.017102   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.064848   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.066349   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.067663   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.068848   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.070021   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.071465   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072651   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072665   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072674   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072681   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072719   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072728   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072736   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072742   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072748   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072757   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072763   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072769   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072777   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072783   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072790   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072796   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.072803   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.073997   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.079115   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.080302   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.109767   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.115728    94 solver.cpp:356] Iteration 0 (1.38656 s), 0/16ep, loss = 0.696067
+I0925 07:35:09.115756    94 solver.cpp:374]     Train net output #0: loss = 0.696067 (* 1 = 0.696067 loss)
+I0925 07:35:09.115773    94 sgd_solver.cpp:170] Iteration 0, lr = 0.01, m = 0.9, wd = 0.0001, gs = 1
+I0925 07:35:09.115795    94 solver.cpp:782] Snapshotting to binary proto file snapshot_iter_1.caffemodel
+I0925 07:35:09.169402   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.234247   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.296481   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359053   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359092   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359100   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359108   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359117   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359124   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359133   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359140   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359148   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359155   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359163   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359170   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359177   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359185   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359194   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359200   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.359207   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:09.863261    94 sgd_solver.cpp:396] Snapshotting solver state to binary proto file snapshot_iter_1.solverstate
+I0925 07:35:10.483009   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.535765   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.578265   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.621734   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.663552   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.707533   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.723801    94 solver.cpp:356] Iteration 1 (1.60811 s), 8/16ep, loss = 0.690095
+I0925 07:35:10.723834    94 solver.cpp:374]     Train net output #0: loss = 0.690095 (* 1 = 0.690095 loss)
+I0925 07:35:10.723843    94 sgd_solver.cpp:170] Iteration 1, lr = 0.001, m = 0.9, wd = 0.0001, gs = 1
+I0925 07:35:10.723884    94 solver.cpp:782] Snapshotting to binary proto file snapshot_iter_2.caffemodel
+I0925 07:35:10.749866   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794142   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794173   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794179   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794186   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794194   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794200   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794206   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794214   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794220   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794227   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794234   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794239   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794247   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794253   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794260   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794265   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:10.794273   109 data_reader.cpp:320] Restarting data pre-fetching
+I0925 07:35:11.113471    94 sgd_solver.cpp:396] Snapshotting solver state to binary proto file snapshot_iter_2.solverstate
+I0925 07:35:11.850215    94 cudnn_conv_layer.cpp:849] [0] Conv Algos (F,BD,BF): 'conv1' with space 0.01M 3/1 1 1 0 	(avail 9.41G, req 0.01M)	t: 0 0 24.33
+I0925 07:35:13.536609    94 cudnn_conv_layer.cpp:849] [0] Conv Algos (F,BD,BF): 'conv2' with space 0.28G 96/2 5 3 5 	(avail 9.13G, req 0.28G)	t: 0 3.57 6.25
+I0925 07:35:15.070052    94 cudnn_conv_layer.cpp:849] [0] Conv Algos (F,BD,BF): 'conv3' with space 0.28G 256/1 7 5 2 	(avail 9.13G, req 0.28G)	t: 0 8.4 12.07
+I0925 07:35:16.051507    94 cudnn_conv_layer.cpp:849] [0] Conv Algos (F,BD,BF): 'conv4' with space 0.29G 384/2 4 2 2 	(avail 9.13G, req 0.29G)	t: 0 4.39 4.14
+I0925 07:35:16.817746    94 cudnn_conv_layer.cpp:849] [0] Conv Algos (F,BD,BF): 'conv5' with space 0.29G 384/2 7 2 2 	(avail 9.13G, req 0.29G)	t: 0 3.06 2.99
+I0925 07:35:16.834794    94 solver.cpp:481] Iteration 2, loss = 0.689541
+I0925 07:35:16.834828    94 caffe.cpp:264] Solver performance on device 0: 0 * 128 = 0 img/sec (2 itr in 0 sec)
+I0925 07:35:16.834842    94 caffe.cpp:267] Optimization Done in 11s

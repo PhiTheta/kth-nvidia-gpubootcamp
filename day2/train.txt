@@ -1,0 +1,16 @@
+/data/BeagleImages/Louie/louie2.JPG 0
+/data/BeagleImages/Louie/louie1.JPG 0
+/data/BeagleImages/Louie/louie7.JPG 0
+/data/BeagleImages/Louie/louie6.JPG 0
+/data/BeagleImages/Louie/louie5.JPG 0
+/data/BeagleImages/Louie/louie3.JPG 0
+/data/BeagleImages/Louie/louie4.JPG 0
+/data/BeagleImages/Louie/louie8.JPG 0
+/data/BeagleImages/Not Louie/notlouie6.JPG 1
+/data/BeagleImages/Not Louie/notlouie5.JPG 1
+/data/BeagleImages/Not Louie/notlouie1.JPG 1
+/data/BeagleImages/Not Louie/notlouie7.JPG 1
+/data/BeagleImages/Not Louie/notlouie4.JPG 1
+/data/BeagleImages/Not Louie/notlouie3.JPG 1
+/data/BeagleImages/Not Louie/notlouie8.JPG 1
+/data/BeagleImages/Not Louie/notlouie2.jpg 1
