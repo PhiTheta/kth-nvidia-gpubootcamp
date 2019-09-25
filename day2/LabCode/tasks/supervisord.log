@@ -1,0 +1,551 @@
+2018-10-26 22:15:16,687 CRIT Supervisor running as root (no user in config file)
+2018-10-26 22:15:16,692 INFO supervisord started with pid 25
+2018-10-26 22:15:17,694 INFO spawned: 'jupyter_notebook' with pid 28
+2018-10-26 22:15:17,700 INFO spawned: 'tensorboard' with pid 29
+2018-10-26 22:15:17,702 INFO spawned: 'digits_srv' with pid 30
+2018-10-26 22:15:17,718 INFO spawned: 'nginx' with pid 31
+2018-10-26 22:15:17,762 DEBG fd 24 closed, stopped monitoring <POutputDispatcher at 139747218936248 for <Subprocess at 139747227990352 with name nginx in state STARTING> (stderr)>
+2018-10-26 22:15:18,765 INFO success: jupyter_notebook entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2018-10-26 22:15:18,765 INFO success: tensorboard entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2018-10-26 22:15:18,766 INFO success: digits_srv entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2018-10-26 22:15:18,766 INFO success: nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2018-10-26 22:15:19,270 DEBG 'jupyter_notebook' stderr output:
+[I 22:15:19.270 NotebookApp] Copying /root/.ipython/kernels -> /root/.local/share/jupyter/kernels
+
+2018-10-26 22:15:19,302 DEBG 'jupyter_notebook' stderr output:
+[I 22:15:19.301 NotebookApp] Writing notebook server cookie secret to /root/.local/share/jupyter/runtime/notebook_cookie_secret
+
+2018-10-26 22:15:20,293 DEBG 'jupyter_notebook' stderr output:
+[W 22:15:20.293 NotebookApp] All authentication is disabled.  Anyone who can connect to this server will be able to run code.
+
+2018-10-26 22:15:20,309 DEBG 'jupyter_notebook' stderr output:
+[I 22:15:20.309 NotebookApp] Serving notebooks from local directory: /dli
+
+2018-10-26 22:15:20,309 DEBG 'jupyter_notebook' stderr output:
+[I 22:15:20.309 NotebookApp] The Jupyter Notebook is running at:
+
+2018-10-26 22:15:20,310 DEBG 'jupyter_notebook' stderr output:
+[I 22:15:20.310 NotebookApp] http://(6e2a4c27e277 or 127.0.0.1):8888/iBqItftP/
+
+2018-10-26 22:15:20,310 DEBG 'jupyter_notebook' stderr output:
+[I 22:15:20.310 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+
+2018-10-26 22:15:21,350 DEBG 'tensorboard' stderr output:
+2018-10-26 22:15:21.350596: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+
+2018-10-26 22:15:21,354 DEBG 'tensorboard' stderr output:
+2018-10-26 22:15:21.354482: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:1e.0
+totalMemory: 11.17GiB freeMemory: 10.86GiB
+
+2018-10-26 22:15:21,354 DEBG 'tensorboard' stderr output:
+2018-10-26 22:15:21.354539: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1394] Ignoring visible gpu device (device: 0, name: Tesla K80, pci bus id: 0000:00:1e.0, compute capability: 3.7) with Cuda compute capability 3.7. The minimum required Cuda capability is 5.2.
+2018-10-26 22:15:21.354643: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+
+2018-10-26 22:15:21,355 DEBG 'tensorboard' stderr output:
+2018-10-26 22:15:21.354740: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-10-26 22:15:21.355379: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+
+2018-10-26 22:15:21,871 DEBG 'tensorboard' stderr output:
+TensorBoard 1.7.0 at http://6e2a4c27e277:6006/cDOLlbQ3 (Press CTRL+C to quit)
+
+2018-10-26 22:15:22,758 DEBG 'digits_srv' stdout output:
+  ___ ___ ___ ___ _____ ___
+ |   \_ _/ __|_ _|_   _/ __|
+ | |) | | (_ || |  | | \__ \
+ |___/___\___|___| |_| |___/ 6.1.1
+
+2018-10-26 22:15:22 [INFO ] Loaded 0 jobs.
+
+2018-10-26 22:15:28,500 DEBG 'jupyter_notebook' stderr output:
+[W 22:15:28.500 NotebookApp] 404 GET /tTMbufmi/edit/tasks/task-assessment/task/submissionsoln.py (127.0.0.1) 72.21ms referer=None
+
+2018-10-26 22:16:18,585 DEBG 'jupyter_notebook' stderr output:
+[I 22:16:18.585 NotebookApp] Writing notebook-signing key to /root/.local/share/jupyter/notebook_secret
+
+2018-10-26 22:16:18,586 DEBG 'jupyter_notebook' stderr output:
+[W 22:16:18.586 NotebookApp] Notebook tasks/task-assessment/task/Assessment1.ipynb is not trusted
+
+2018-10-26 22:16:19,002 DEBG 'jupyter_notebook' stderr output:
+[I 22:16:19.002 NotebookApp] Kernel started: c8bae917-c61b-4bb8-80ac-50142d72ffe8
+
+2018-10-26 22:16:19,682 DEBG 'jupyter_notebook' stderr output:
+[I 22:16:19.682 NotebookApp] Adapting to protocol v5.1 for kernel c8bae917-c61b-4bb8-80ac-50142d72ffe8
+
+2018-10-26 22:16:52,048 DEBG 'digits_srv' stdout output:
+2018-10-26 22:16:52 [20181026-221650-f5a2] [INFO ] Parse Folder (train/val) task started.
+
+2018-10-26 22:16:52,049 DEBG 'digits_srv' stdout output:
+2018-10-26 22:16:52 [20181026-221650-f5a2] [INFO ] Task subprocess args: "/usr/bin/python /opt/digits/digits/tools/parse_folder.py /dli/data/whale/data/train /dli/data/digits/20181026-221650-f5a2/labels.txt --min=2 --train_file=/dli/data/digits/20181026-221650-f5a2/train.txt --val_file=/dli/data/digits/20181026-221650-f5a2/val.txt --percent_val=25.0"
+
+2018-10-26 22:16:54,231 DEBG 'digits_srv' stdout output:
+2018-10-26 22:16:54 [20181026-221650-f5a2] [INFO ] Parse Folder (train/val) task completed.
+
+2018-10-26 22:16:54,301 DEBG 'digits_srv' stdout output:
+2018-10-26 22:16:54 [20181026-221650-f5a2] [INFO ] Create DB (train) task started.
+
+2018-10-26 22:16:54,302 DEBG 'digits_srv' stdout output:
+2018-10-26 22:16:54 [20181026-221650-f5a2] [INFO ] Task subprocess args: "/usr/bin/python /opt/digits/digits/tools/create_db.py /dli/data/digits/20181026-221650-f5a2/train.txt /dli/data/digits/20181026-221650-f5a2/train_db 256 256 --backend=lmdb --channels=3 --resize_mode=squash --mean_file=/dli/data/digits/20181026-221650-f5a2/mean.binaryproto --mean_file=/dli/data/digits/20181026-221650-f5a2/mean.jpg --shuffle --encoding=png"
+
+2018-10-26 22:16:54,660 DEBG 'digits_srv' stdout output:
+2018-10-26 22:16:54 [20181026-221650-f5a2] [INFO ] Create DB (val) task started.
+
+2018-10-26 22:16:54,662 DEBG 'digits_srv' stdout output:
+2018-10-26 22:16:54 [20181026-221650-f5a2] [INFO ] Task subprocess args: "/usr/bin/python /opt/digits/digits/tools/create_db.py /dli/data/digits/20181026-221650-f5a2/val.txt /dli/data/digits/20181026-221650-f5a2/val_db 256 256 --backend=lmdb --channels=3 --resize_mode=squash --shuffle --encoding=png"
+
+2018-10-26 22:17:38,037 DEBG 'digits_srv' stdout output:
+2018-10-26 22:17:38 [20181026-221650-f5a2] [DEBUG] 2272 images written to database
+
+2018-10-26 22:17:38,455 DEBG 'digits_srv' stdout output:
+2018-10-26 22:17:38 [20181026-221650-f5a2] [INFO ] Create DB (val) task completed.
+
+2018-10-26 22:18:00,526 DEBG 'jupyter_notebook' stderr output:
+[W 22:18:00.526 NotebookApp] Notebook tasks/task3/task/Deployment.ipynb is not trusted
+
+2018-10-26 22:18:01,460 DEBG 'jupyter_notebook' stderr output:
+[I 22:18:01.459 NotebookApp] Kernel started: 2af3ad99-b00a-4365-a7fa-30ab8d816d8f
+
+2018-10-26 22:18:01,482 DEBG 'jupyter_notebook' stderr output:
+[I 22:18:01.481 NotebookApp] 302 GET /iBqItftP/notebooks/tasks/task3/task/images/datasetjobdir.PNG (127.0.0.1) 1.23ms
+
+2018-10-26 22:18:01,499 DEBG 'jupyter_notebook' stderr output:
+[I 22:18:01.499 NotebookApp] 302 GET /iBqItftP/notebooks/tasks/task3/task/images/DLI%20Header.png (127.0.0.1) 16.32ms
+
+2018-10-26 22:18:01,502 DEBG 'jupyter_notebook' stderr output:
+[I 22:18:01.502 NotebookApp] 302 GET /iBqItftP/notebooks/tasks/task3/task/images/ModelJobView.PNG (127.0.0.1) 1.01ms
+
+2018-10-26 22:18:03,218 DEBG 'jupyter_notebook' stderr output:
+[I 22:18:03.218 NotebookApp] Adapting to protocol v5.1 for kernel 2af3ad99-b00a-4365-a7fa-30ab8d816d8f
+
+2018-10-26 22:18:16,876 DEBG 'digits_srv' stdout output:
+2018-10-26 22:18:16 [20181026-221650-f5a2] [DEBUG] 6814 images written to database
+
+2018-10-26 22:18:17,038 DEBG 'digits_srv' stdout output:
+2018-10-26 22:18:17 [20181026-221650-f5a2] [INFO ] Create DB (train) task completed.
+
+2018-10-26 22:18:17,073 DEBG 'digits_srv' stdout output:
+2018-10-26 22:18:17 [20181026-221650-f5a2] [INFO ] Job complete.
+
+2018-10-26 22:18:17,083 DEBG 'digits_srv' stdout output:
+2018-10-26 22:18:17 [20181026-221702-eb01] [DEBUG] Network sanity check - train
+
+2018-10-26 22:18:17,083 DEBG 'digits_srv' stdout output:
+2018-10-26 22:18:17 [20181026-221702-eb01] [DEBUG] Network sanity check - val
+
+2018-10-26 22:18:17,085 DEBG 'digits_srv' stdout output:
+2018-10-26 22:18:17 [20181026-221702-eb01] [DEBUG] Network sanity check - deploy
+
+2018-10-26 22:18:17,086 DEBG 'digits_srv' stdout output:
+2018-10-26 22:18:17 [20181026-221702-eb01] [INFO ] Train Caffe Model task started.
+
+2018-10-26 22:18:17,087 DEBG 'digits_srv' stdout output:
+2018-10-26 22:18:17 [20181026-221702-eb01] [INFO ] Task subprocess args: "/usr/local/bin/caffe train --solver=/dli/data/digits/20181026-221702-eb01/solver.prototxt --gpu=0"
+
+2018-10-26 22:18:17,111 DEBG 'jupyter_notebook' stderr output:
+[W 22:18:17.110 NotebookApp] 404 GET /files/20181026-221650-f5a2/mean.jpg (127.0.0.1) 1.38ms referer=http://34.208.63.226:9280/cQh1Flna/datasets/20181026-221650-f5a2
+
+2018-10-26 22:18:19,212 DEBG 'jupyter_notebook' stderr output:
+[I 22:18:19.212 NotebookApp] Saving file at /tasks/task-assessment/task/Assessment1.ipynb
+
+2018-10-26 22:18:23,910 DEBG 'digits_srv' stdout output:
+2018-10-26 22:18:23 [20181026-221702-eb01] [DEBUG] Training 0.0% complete.
+
+2018-10-26 22:18:30,522 DEBG 'digits_srv' stdout output:
+2018-10-26 22:18:30 [20181026-221702-eb01] [DEBUG] Training 0.74% complete.
+
+2018-10-26 22:18:35,676 DEBG 'digits_srv' stdout output:
+2018-10-26 22:18:35 [20181026-221702-eb01] [DEBUG] Training 8.89% complete.
+
+2018-10-26 22:18:41,251 DEBG 'digits_srv' stdout output:
+2018-10-26 22:18:41 [20181026-221702-eb01] [DEBUG] Training 17.78% complete.
+
+2018-10-26 22:18:41,493 DEBG 'jupyter_notebook' stderr output:
+[I 22:18:41.493 NotebookApp] Saving file at /tasks/task-assessment/task/submission.py
+
+2018-10-26 22:18:55,170 DEBG 'digits_srv' stdout output:
+2018-10-26 22:18:55 [20181026-221702-eb01] [DEBUG] Snapshot saved.
+
+2018-10-26 22:19:02,386 DEBG 'digits_srv' stdout output:
+2018-10-26 22:19:02 [20181026-221702-eb01] [DEBUG] Training 20.0% complete.
+
+2018-10-26 22:19:06,048 DEBG 'jupyter_notebook' stderr output:
+[I 22:19:06.048 NotebookApp] Saving file at /tasks/task-assessment/task/submission.py
+
+2018-10-26 22:19:08,002 DEBG 'digits_srv' stdout output:
+2018-10-26 22:19:08 [20181026-221702-eb01] [DEBUG] Training 28.89% complete.
+
+2018-10-26 22:19:13,620 DEBG 'digits_srv' stdout output:
+2018-10-26 22:19:13 [20181026-221702-eb01] [DEBUG] Training 37.78% complete.
+
+2018-10-26 22:19:46,603 DEBG 'digits_srv' stdout output:
+2018-10-26 22:19:46 [20181026-221702-eb01] [DEBUG] Snapshot saved.
+
+2018-10-26 22:19:52,589 DEBG 'digits_srv' stdout output:
+2018-10-26 22:19:52 [20181026-221702-eb01] [DEBUG] Training 40.0% complete.
+
+2018-10-26 22:19:58,155 DEBG 'digits_srv' stdout output:
+2018-10-26 22:19:58 [20181026-221702-eb01] [DEBUG] Training 48.89% complete.
+
+2018-10-26 22:20:02,262 DEBG 'jupyter_notebook' stderr output:
+[I 22:20:02.260 NotebookApp] Saving file at /tasks/task3/task/Deployment.ipynb
+
+2018-10-26 22:20:03,770 DEBG 'digits_srv' stdout output:
+2018-10-26 22:20:03 [20181026-221702-eb01] [DEBUG] Training 57.78% complete.
+
+2018-10-26 22:20:05,541 DEBG 'jupyter_notebook' stderr output:
+[I 22:20:05.541 NotebookApp] Saving file at /tasks/task-assessment/task/submission.py
+
+2018-10-26 22:20:12,103 DEBG 'digits_srv' stdout output:
+2018-10-26 22:20:12 [20181026-221702-eb01] [DEBUG] Snapshot saved.
+
+2018-10-26 22:20:19,029 DEBG 'jupyter_notebook' stderr output:
+[I 22:20:19.027 NotebookApp] Saving file at /tasks/task-assessment/task/Assessment1.ipynb
+
+2018-10-26 22:20:24,893 DEBG 'digits_srv' stdout output:
+2018-10-26 22:20:24 [20181026-221702-eb01] [DEBUG] Training 60.0% complete.
+
+2018-10-26 22:20:30,916 DEBG 'digits_srv' stdout output:
+2018-10-26 22:20:30 [20181026-221702-eb01] [DEBUG] Training 68.89% complete.
+
+2018-10-26 22:20:37,089 DEBG 'digits_srv' stdout output:
+2018-10-26 22:20:37 [20181026-221702-eb01] [DEBUG] Training 77.78% complete.
+
+2018-10-26 22:20:41,636 DEBG 'digits_srv' stdout output:
+2018-10-26 22:20:41 [20181026-221702-eb01] [DEBUG] Snapshot saved.
+
+2018-10-26 22:20:47,587 DEBG 'digits_srv' stdout output:
+2018-10-26 22:20:47 [20181026-221702-eb01] [DEBUG] Training 80.0% complete.
+
+2018-10-26 22:20:53,195 DEBG 'digits_srv' stdout output:
+2018-10-26 22:20:53 [20181026-221702-eb01] [DEBUG] Training 88.89% complete.
+
+2018-10-26 22:20:58,809 DEBG 'digits_srv' stdout output:
+2018-10-26 22:20:58 [20181026-221702-eb01] [DEBUG] Training 97.78% complete.
+
+2018-10-26 22:21:01,887 DEBG 'digits_srv' stdout output:
+2018-10-26 22:21:01 [20181026-221702-eb01] [DEBUG] Snapshot saved.
+
+2018-10-26 22:21:08,554 DEBG 'digits_srv' stdout output:
+2018-10-26 22:21:08 [20181026-221702-eb01] [INFO ] Train Caffe Model task completed.
+
+2018-10-26 22:21:08,764 DEBG 'digits_srv' stdout output:
+2018-10-26 22:21:08 [20181026-221702-eb01] [INFO ] Job complete.
+
+2018-10-26 22:21:50,711 DEBG 'jupyter_notebook' stderr output:
+[I 22:21:50.710 NotebookApp] Saving file at /tasks/task-assessment/task/submission.py
+
+2018-10-26 22:22:19,019 DEBG 'jupyter_notebook' stderr output:
+[I 22:22:19.018 NotebookApp] Saving file at /tasks/task-assessment/task/Assessment1.ipynb
+
+2018-10-26 22:26:25,044 DEBG 'jupyter_notebook' stderr output:
+[I 22:26:25.044 NotebookApp] Saving file at /tasks/task-assessment/assessment/run_classify.py
+
+2018-10-26 22:26:41,756 DEBG 'jupyter_notebook' stderr output:
+[I 22:26:41.755 NotebookApp] Saving file at /tasks/task-assessment/assessment/run_classify.py
+
+2018-10-26 22:28:38,566 DEBG 'jupyter_notebook' stderr output:
+[I 22:28:38.566 NotebookApp] Saving file at /tasks/task-assessment/assessment/run_classify.py
+
+2018-10-26 22:31:30,858 DEBG 'jupyter_notebook' stderr output:
+[I 22:31:30.858 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 22:32:51,720 DEBG 'jupyter_notebook' stderr output:
+[I 22:32:51.720 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 22:33:49,987 DEBG 'jupyter_notebook' stderr output:
+[I 22:33:49.987 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 22:35:23,412 DEBG 'jupyter_notebook' stderr output:
+[I 22:35:23.412 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 22:35:59,682 DEBG 'jupyter_notebook' stderr output:
+[I 22:35:59.682 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 22:39:33,862 DEBG 'jupyter_notebook' stderr output:
+[I 22:39:33.862 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 22:39:47,834 DEBG 'jupyter_notebook' stderr output:
+[I 22:39:47.833 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 22:40:07,692 DEBG 'jupyter_notebook' stderr output:
+[I 22:40:07.692 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 22:40:17,822 DEBG 'jupyter_notebook' stderr output:
+[I 22:40:17.822 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 22:40:25,001 DEBG 'jupyter_notebook' stderr output:
+[I 22:40:25.001 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 22:40:55,729 DEBG 'jupyter_notebook' stderr output:
+[I 22:40:55.728 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 22:41:32,415 DEBG 'jupyter_notebook' stderr output:
+[I 22:41:32.415 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 23:12:49,685 DEBG 'jupyter_notebook' stderr output:
+[W 23:12:49.684 NotebookApp] WebSocket ping timeout after 119949 ms.
+
+2018-10-26 23:12:54,687 DEBG 'jupyter_notebook' stderr output:
+[I 23:12:54.687 NotebookApp] Starting buffering for c8bae917-c61b-4bb8-80ac-50142d72ffe8:a7bb9486ddf84e9992afb92937aec2c7
+
+2018-10-26 23:13:03,222 DEBG 'jupyter_notebook' stderr output:
+[W 23:13:03.221 NotebookApp] WebSocket ping timeout after 119951 ms.
+
+2018-10-26 23:13:08,222 DEBG 'jupyter_notebook' stderr output:
+[I 23:13:08.222 NotebookApp] Starting buffering for 2af3ad99-b00a-4365-a7fa-30ab8d816d8f:d91011760a73403f8156e7599f947ebf
+
+2018-10-26 23:15:10,780 DEBG 'jupyter_notebook' stderr output:
+[W 23:15:10.779 NotebookApp] Notebook tasks/task-assessment/task/Project.ipynb is not trusted
+
+2018-10-26 23:15:10,938 DEBG 'jupyter_notebook' stderr output:
+[I 23:15:10.938 NotebookApp] Kernel started: 85ca883e-b6a8-45d0-bf4a-587449952f6b
+
+2018-10-26 23:15:11,508 DEBG 'jupyter_notebook' stderr output:
+[I 23:15:11.508 NotebookApp] Adapting to protocol v5.1 for kernel 85ca883e-b6a8-45d0-bf4a-587449952f6b
+
+2018-10-26 23:15:13,425 DEBG 'jupyter_notebook' stderr output:
+[I 23:15:13.425 NotebookApp] Starting buffering for 85ca883e-b6a8-45d0-bf4a-587449952f6b:10b08dd0d8d5473d8089d62fb6d12082
+
+2018-10-26 23:15:17,185 DEBG 'jupyter_notebook' stderr output:
+[I 23:15:17.185 NotebookApp] Adapting to protocol v5.1 for kernel c8bae917-c61b-4bb8-80ac-50142d72ffe8
+
+2018-10-26 23:17:16,880 DEBG 'jupyter_notebook' stderr output:
+[I 23:17:16.880 NotebookApp] Saving file at /tasks/task-assessment/assessment/run_classify.py
+
+2018-10-26 23:17:17,170 DEBG 'jupyter_notebook' stderr output:
+[I 23:17:17.169 NotebookApp] Saving file at /tasks/task-assessment/task/Assessment1.ipynb
+
+2018-10-26 23:20:13,418 DEBG 'jupyter_notebook' stderr output:
+[I 23:20:13.418 NotebookApp] Saving file at /tasks/task-assessment/assessment/run_classify.py
+
+2018-10-26 23:22:12,074 DEBG 'jupyter_notebook' stderr output:
+[I 23:22:12.073 NotebookApp] Saving file at /tasks/task-assessment/assessment/run_classify.py
+
+2018-10-26 23:22:55,358 DEBG 'jupyter_notebook' stderr output:
+[I 23:22:55.358 NotebookApp] Saving file at /tasks/task-assessment/assessment/run_classify.py
+
+2018-10-26 23:23:05,496 DEBG 'jupyter_notebook' stderr output:
+[I 23:23:05.496 NotebookApp] Saving file at /tasks/task-assessment/assessment/run_classify.py
+
+2018-10-26 23:23:42,784 DEBG 'jupyter_notebook' stderr output:
+[I 23:23:42.784 NotebookApp] Saving file at /tasks/task-assessment/assessment/run_classify.py
+
+2018-10-26 23:23:49,700 DEBG 'jupyter_notebook' stderr output:
+[I 23:23:49.700 NotebookApp] Saving file at /tasks/task-assessment/assessment/run_classify.py
+
+2018-10-26 23:23:51,367 DEBG 'jupyter_notebook' stderr output:
+[I 23:23:51.367 NotebookApp] Saving file at /tasks/task-assessment/assessment/run_classify.py
+
+2018-10-26 23:25:00,074 DEBG 'jupyter_notebook' stderr output:
+[I 23:25:00.074 NotebookApp] Saving file at /tasks/task-assessment/assessment/run_classify.py
+
+2018-10-26 23:25:48,609 DEBG 'jupyter_notebook' stderr output:
+[I 23:25:48.609 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 23:25:53,425 DEBG 'jupyter_notebook' stderr output:
+[I 23:25:53.425 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 23:25:58,039 DEBG 'jupyter_notebook' stderr output:
+[I 23:25:58.039 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 23:26:59,380 DEBG 'jupyter_notebook' stderr output:
+[I 23:26:59.380 NotebookApp] Saving file at /tasks/task-assessment/task/submission.py
+
+2018-10-26 23:27:02,999 DEBG 'jupyter_notebook' stderr output:
+[I 23:27:02.999 NotebookApp] Saving file at /tasks/task-assessment/task/submission.py
+
+2018-10-26 23:27:22,918 DEBG 'jupyter_notebook' stderr output:
+[I 23:27:22.918 NotebookApp] Saving file at /tasks/task-assessment/task/submission.py
+
+2018-10-26 23:28:26,228 DEBG 'jupyter_notebook' stderr output:
+[I 23:28:26.228 NotebookApp] Saving file at /tasks/task-assessment/task/submission.py
+
+2018-10-26 23:29:50,507 DEBG 'jupyter_notebook' stderr output:
+[I 23:29:50.507 NotebookApp] Saving file at /tasks/task-assessment/task/submission.py
+
+2018-10-26 23:30:20,019 DEBG 'jupyter_notebook' stderr output:
+[I 23:30:20.019 NotebookApp] Saving file at /tasks/task-assessment/task/submission.py
+
+2018-10-26 23:32:34,708 DEBG 'jupyter_notebook' stderr output:
+[I 23:32:34.708 NotebookApp] Saving file at /tasks/task-assessment/task/submission.py
+
+2018-10-26 23:34:04,236 DEBG 'jupyter_notebook' stderr output:
+[I 23:34:04.235 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 23:35:28,362 DEBG 'jupyter_notebook' stderr output:
+[I 23:35:28.362 NotebookApp] Saving file at /tasks/task-assessment/task/submission.py
+
+2018-10-26 23:40:57,353 DEBG 'jupyter_notebook' stderr output:
+[I 23:40:57.353 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 23:41:00,933 DEBG 'jupyter_notebook' stderr output:
+[I 23:41:00.933 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 23:41:20,706 DEBG 'jupyter_notebook' stderr output:
+[I 23:41:20.706 NotebookApp] Saving file at /tasks/task-assessment/assessment/assessment.py
+
+2018-10-26 23:44:48,877 DEBG 'jupyter_notebook' stderr output:
+[I 23:44:48.877 NotebookApp] Saving file at /tasks/task-assessment/assessment/run_classify.py
+
+2018-10-26 23:44:49,831 DEBG 'jupyter_notebook' stderr output:
+[I 23:44:49.831 NotebookApp] Saving file at /tasks/task-assessment/assessment/run_classify.py
+
+2018-10-26 23:45:31,083 DEBG 'jupyter_notebook' stderr output:
+[I 23:45:31.083 NotebookApp] Saving file at /tasks/task-assessment/task/submission.py
+
+2018-10-26 23:46:41,833 DEBG 'jupyter_notebook' stderr output:
+[I 23:46:41.833 NotebookApp] Starting buffering for c8bae917-c61b-4bb8-80ac-50142d72ffe8:7693b1a61a69496183426b2b417a6196
+
+2018-10-29 18:30:33,287 DEBG 'jupyter_notebook' stderr output:
+[W 18:30:33.286 NotebookApp] 404 GET /iBqItftP/edit/tasks/task-assessment (127.0.0.1): File does not exist: tasks/task-assessment
+
+2018-10-29 18:30:33,288 DEBG 'jupyter_notebook' stderr output:
+[W 18:30:33.288 NotebookApp] 404 GET /iBqItftP/edit/tasks/task-assessment (127.0.0.1) 1.54ms referer=None
+
+2018-10-29 18:33:26,018 DEBG 'jupyter_notebook' stderr output:
+[I 18:33:26.017 NotebookApp] Adapting to protocol v5.1 for kernel c8bae917-c61b-4bb8-80ac-50142d72ffe8
+
+2018-10-29 18:33:57,755 DEBG 'digits_srv' stdout output:
+2018-10-29 18:33:57 [20181029-183356-d7ba] [DEBUG] Network sanity check - train
+
+2018-10-29 18:33:57,755 DEBG 'digits_srv' stdout output:
+2018-10-29 18:33:57 [20181029-183356-d7ba] [DEBUG] Network sanity check - val
+
+2018-10-29 18:33:57,757 DEBG 'digits_srv' stdout output:
+2018-10-29 18:33:57 [20181029-183356-d7ba] [DEBUG] Network sanity check - deploy
+
+2018-10-29 18:33:57,758 DEBG 'digits_srv' stdout output:
+2018-10-29 18:33:57 [20181029-183356-d7ba] [INFO ] Train Caffe Model task started.
+
+2018-10-29 18:33:57,759 DEBG 'digits_srv' stdout output:
+2018-10-29 18:33:57 [20181029-183356-d7ba] [INFO ] Task subprocess args: "/usr/local/bin/caffe train --solver=/dli/data/digits/20181029-183356-d7ba/solver.prototxt --gpu=0"
+
+2018-10-29 18:34:03,357 DEBG 'digits_srv' stdout output:
+2018-10-29 18:34:03 [20181029-183356-d7ba] [DEBUG] Training 0.0% complete.
+
+2018-10-29 18:34:09,762 DEBG 'digits_srv' stdout output:
+2018-10-29 18:34:09 [20181029-183356-d7ba] [DEBUG] Training 3.7% complete.
+
+2018-10-29 18:34:14,921 DEBG 'digits_srv' stdout output:
+2018-10-29 18:34:14 [20181029-183356-d7ba] [DEBUG] Training 44.44% complete.
+
+2018-10-29 18:34:20,578 DEBG 'digits_srv' stdout output:
+2018-10-29 18:34:20 [20181029-183356-d7ba] [DEBUG] Training 88.89% complete.
+
+2018-10-29 18:34:34,312 DEBG 'digits_srv' stdout output:
+2018-10-29 18:34:34 [20181029-183356-d7ba] [DEBUG] Snapshot saved.
+
+2018-10-29 18:34:40,884 DEBG 'digits_srv' stdout output:
+2018-10-29 18:34:40 [20181029-183356-d7ba] [INFO ] Train Caffe Model task completed.
+
+2018-10-29 18:34:41,114 DEBG 'digits_srv' stdout output:
+2018-10-29 18:34:41 [20181029-183356-d7ba] [INFO ] Job complete.
+
+2018-10-29 18:34:50,619 DEBG 'jupyter_notebook' stderr output:
+[I 18:34:50.618 NotebookApp] Saving file at /tasks/task-assessment/task/submission.py
+
+2018-10-29 18:35:25,985 DEBG 'jupyter_notebook' stderr output:
+[I 18:35:25.985 NotebookApp] Saving file at /tasks/task-assessment/task/Assessment1.ipynb
+
+2018-10-29 18:37:26,468 DEBG 'jupyter_notebook' stderr output:
+[I 18:37:26.468 NotebookApp] Saving file at /tasks/task-assessment/task/Assessment1.ipynb
+
+2019-09-25 09:19:29,879 CRIT Supervisor running as root (no user in config file)
+2019-09-25 09:19:29,883 INFO supervisord started with pid 25
+2019-09-25 09:19:30,885 INFO spawned: 'jupyter_notebook' with pid 28
+2019-09-25 09:19:30,887 INFO spawned: 'tensorboard' with pid 29
+2019-09-25 09:19:30,889 INFO spawned: 'digits_srv' with pid 30
+2019-09-25 09:19:30,890 INFO spawned: 'nginx' with pid 31
+2019-09-25 09:19:30,935 DEBG fd 24 closed, stopped monitoring <POutputDispatcher at 140288983040512 for <Subprocess at 140288992094472 with name nginx in state STARTING> (stderr)>
+2019-09-25 09:19:31,310 DEBG 'jupyter_notebook' stderr output:
+[I 09:19:31.309 NotebookApp] Copying /root/.ipython/kernels -> /root/.local/share/jupyter/kernels
+
+2019-09-25 09:19:31,322 DEBG 'jupyter_notebook' stderr output:
+[I 09:19:31.322 NotebookApp] Writing notebook server cookie secret to /root/.local/share/jupyter/runtime/notebook_cookie_secret
+
+2019-09-25 09:19:31,818 DEBG 'jupyter_notebook' stderr output:
+[W 09:19:31.818 NotebookApp] All authentication is disabled.  Anyone who can connect to this server will be able to run code.
+
+2019-09-25 09:19:31,829 DEBG 'jupyter_notebook' stderr output:
+[I 09:19:31.829 NotebookApp] Serving notebooks from local directory: /dli
+
+2019-09-25 09:19:31,830 DEBG 'jupyter_notebook' stderr output:
+[I 09:19:31.829 NotebookApp] The Jupyter Notebook is running at:
+
+2019-09-25 09:19:31,830 DEBG 'jupyter_notebook' stderr output:
+[I 09:19:31.830 NotebookApp] http://(ee808b31917f or 127.0.0.1):8888/jh2r74ay/
+
+2019-09-25 09:19:31,831 DEBG 'jupyter_notebook' stderr output:
+[I 09:19:31.830 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+
+2019-09-25 09:19:32,388 DEBG 'tensorboard' stderr output:
+2019-09-25 09:19:32.387810: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+
+2019-09-25 09:19:32,388 INFO success: jupyter_notebook entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-09-25 09:19:32,388 INFO success: tensorboard entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-09-25 09:19:32,388 INFO success: digits_srv entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-09-25 09:19:32,388 INFO success: nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-09-25 09:19:32,388 DEBG 'tensorboard' stderr output:
+2019-09-25 09:19:32.388268: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:1e.0
+totalMemory: 11.17GiB freeMemory: 11.10GiB
+2019-09-25 09:19:32.388304: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1394] Ignoring visible gpu device (device: 0, name: Tesla K80, pci bus id: 0000:00:1e.0, compute capability: 3.7) with Cuda compute capability 3.7. The minimum required Cuda capability is 5.2.
+2019-09-25 09:19:32.388328: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-09-25 09:19:32.388344: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2019-09-25 09:19:32.388357: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+
+2019-09-25 09:19:32,661 DEBG 'tensorboard' stderr output:
+TensorBoard 1.7.0 at http://ee808b31917f:6006/BlxckPxL (Press CTRL+C to quit)
+
+2019-09-25 09:19:33,497 DEBG 'jupyter_notebook' stderr output:
+[W 09:19:33.497 NotebookApp] 405 HEAD /jh2r74ay/notebooks/tasks/task3/task/Deployment.ipynb (127.0.0.1) 9.09ms referer=None
+
+2019-09-25 09:19:33,712 DEBG 'jupyter_notebook' stderr output:
+[W 09:19:33.712 NotebookApp] 405 HEAD /jh2r74ay/notebooks/tasks/task3/task/Deployment.ipynb (127.0.0.1) 1.29ms referer=None
+
+2019-09-25 09:19:33,767 DEBG 'digits_srv' stdout output:
+  ___ ___ ___ ___ _____ ___
+ |   \_ _/ __|_ _|_   _/ __|
+ | |) | | (_ || |  | | \__ \
+ |___/___\___|___| |_| |___/ 6.1.1
+
+2019-09-25 09:19:33 [INFO ] Loaded 2 jobs.
+
+2019-09-25 09:19:49,098 DEBG 'jupyter_notebook' stderr output:
+[W 09:19:49.097 NotebookApp] 405 HEAD /jh2r74ay/notebooks/tasks/task3/task/Deployment.ipynb (127.0.0.1) 1.29ms referer=None
+
+2019-09-25 09:22:23,890 DEBG 'jupyter_notebook' stderr output:
+[I 09:22:23.890 NotebookApp] Writing notebook-signing key to /root/.local/share/jupyter/notebook_secret
+
+2019-09-25 09:22:23,891 DEBG 'jupyter_notebook' stderr output:
+[W 09:22:23.891 NotebookApp] Notebook tasks/task3/task/Deployment.ipynb is not trusted
+
+2019-09-25 09:22:24,144 DEBG 'jupyter_notebook' stderr output:
+[I 09:22:24.144 NotebookApp] 302 GET /jh2r74ay/notebooks/tasks/task3/task/images/DLI%20Header.png (127.0.0.1) 0.69ms
+
+2019-09-25 09:22:24,222 DEBG 'jupyter_notebook' stderr output:
+[I 09:22:24.221 NotebookApp] 302 GET /jh2r74ay/notebooks/tasks/task3/task/images/ModelJobView.PNG (127.0.0.1) 0.64ms
+
+2019-09-25 09:22:24,508 DEBG 'jupyter_notebook' stderr output:
+[I 09:22:24.508 NotebookApp] 302 GET /jh2r74ay/notebooks/tasks/task3/task/images/datasetjobdir.PNG (127.0.0.1) 0.61ms
+
+2019-09-25 09:22:25,085 DEBG 'jupyter_notebook' stderr output:
+[I 09:22:25.085 NotebookApp] Kernel started: d6345cae-8f76-485f-9fb4-bb2e78ca76d6
+
+2019-09-25 09:22:25,529 DEBG 'jupyter_notebook' stderr output:
+[I 09:22:25.529 NotebookApp] Adapting to protocol v5.1 for kernel d6345cae-8f76-485f-9fb4-bb2e78ca76d6
+
+2019-09-25 09:22:52,290 DEBG 'jupyter_notebook' stderr output:
+[I 09:22:52.290 NotebookApp] Saving file at /tasks/task3/task/Deployment.ipynb
+
+2019-09-25 09:22:52,332 DEBG 'jupyter_notebook' stderr output:
+[I 09:22:52.332 NotebookApp] Saving file at /tasks/task3/task/Deployment.ipynb
+
+2019-09-25 09:24:00,844 DEBG 'jupyter_notebook' stderr output:
+[I 09:24:00.844 NotebookApp] 302 GET /jh2r74ay/notebooks/ (127.0.0.1) 0.72ms
+
+2019-09-25 09:27:44,105 DEBG 'jupyter_notebook' stderr output:
+[I 09:27:44.105 NotebookApp] 302 GET /jh2r74ay/tree/data/dogscats/test/ (127.0.0.1) 0.35ms
+

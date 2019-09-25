@@ -22,8 +22,8 @@ Core Tenet of Deep Learning : forward propagate an image through the network, ge
 5. https://developer.nvidia.com/digits
 6. https://latex.codecogs.com/
 7. https://www.youtube.com/watch?v=Ilg3gGewQ5U
-8. 
-
+8. https://docs.google.com/document/d/1A8r1Shh0ssiRzrxNcraK7PJ_NUFay--EX1aBovpVMKU/edit?usp=sharing  (THis is updated regularly)
+9. https://ngc.nvidia.com/
 
 ## From Slides
 

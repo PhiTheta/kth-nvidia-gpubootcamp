@@ -1,95 +1,70 @@
-# NVIDIA GPU Bootcamp
+# Tentative Agenda
 
-KTH September 2019
+## Day 1: Introduction to GPU Programming with OpenACC
 
+Morning:  
 
-## Day 1 - 24 Sep 2019
-Paul Graham : pgraham@nvidia.com
+1. Introduction to GPU programming (15 min)
+   1. What is a GPU and Why Should You Care?
+   2. What is GPU Programming?
+   3. Available Libraries, Programming Models, Platforms
+2. Introduction to OpenACC (55 min)
+   1. What is OpenACC and Why Should You Care?
+   2. Profile-driven Development
+   3. First Steps with OpenACC
+   4. Lab 1
+3. OpenACC Data Management (55 min)
+   1. CPU and GPU Memories
+   2. CUDA Unified (Managed) Memory
+   3. OpenACC Data Management
+   4. Lab 2
+4. Gangs, Workers, and Vectors Demystified (55 min)
+   1. GPU Profiles
+   2. Loop Optimizations
+   3. Lab 3
 
-Create Accounts on linuxacademy.com, developer.nvidia.com course.nvidia.com
+Lunch: 12:00-1:00PM  
 
+Afternoon:  
 
-### Session 1: Introduction to GPU Computing
-1. What to expect? - Overview on  GPU Stack, GPU Architecture, ways to GPU computing
-2. Full Stack Optimization  
-   Plot of Relative performance vs time (with Moores law and GPU accelerated Growth), 2013- Accelerated server with Fermi, 2019 - Accelerated Server with Volta
-3. Nvidia Universal Acceleration Platform - Single platform drives utilization and productivity.
-   
+5. Mini-application challenge (13:00-18:00)
+   1. Overview of the mini-application (15 min)
+   2. Review steps to acceleration (5 min)
+   3. The application challenge using AWS and Linux academy infrastructure (the rest of the day)
 
-Coustomer Usecases (Consumer Internet(Speech, Translate, Recommender), Industrial Applications, Scientific Applications), 
--------------------------------------------------------------------------------------------------------------------------
-Apps and Frameworks (Python RAPIDS, TEnsorflow, pytorch, mxnet, chainer, onnx, Amber NAMD ANSYS, SIMULA), 
----------------------------------------------------------------------------------------------------------
-Nvidia DSK & Libraries (ML/Analytics, Deep Learning, HPC), 
-----------------------------------------------------------
-CUDA
-----
+## Day 2: Fundamentals of Deep Learning for Computer Vision
 
-Tesla GPUs & Systems (Tesla GPU, Virtual GPU, Nvidia DGX Family, Nvidia HGX, System OEM, Cloud)
------------------------------------------------------------------------------------------------
+In this hands-on course, you will learn the basics of deep learning by training and deploying neural networks. You will
 
+* implement common deep learning workflows such as Image Classification and Object Detection,
+* experiment with data, training parameters, network structure, and other strategies to increase performance and capability, and
+* deploy your networks to start solving real-world problems.
 
-4. How GPU Acceleration Works
+On completion of this course, you will be able to start solving your own problems with deep learning.
 
-GPU `<--- Compute intensive Functions (5% of Code)` AppCode 
+1. Introduction (45 min)
+   1. Course overview
+   2. Getting started with deep learning
+2. Unlocking New Capabilities (120 mins)
+   1. Biological inspiration for deep neural networks (DNNs)
+   2. Training DNNs with big data
+    
+Break (45 min)  
+    
+3. Unlocking New Capabilities (40 mins)
+   1. Deploying DNN models
+4. Measuring and Improving Performance (100 min)
+   1. Optimizing DNN performance
+   2. Incorporating object detection
+5. Summary (20 mins)
+   1. Summary of key learnings
 
-CPU- Optimized for serial Tasks
-GPU Accelerator - Optimized for parallel tasks
-CPU is a latency reducing Architecutre
-5. CPU Strenghts
-   1. Very large main memory
-   2. Very fast clock speed
+Break (15 mins)  
 
-6. GPU Strenghts
-   1. High bandwidth main memory
-   2. Significantly more compute resources
-   3. Latency tolerant via parallelism
-   4. High throughput
-   5. High performance/watt
-
-7. GPU weakness
-   1. Relatively low memory capacity
-
-
-8. How to start with GPUS
-   1. Applications
-   2. Libraries 0 Easy to use, most performance; Compiler Directives (OpenACC); Programming Languages (CUDA)
-
-9. GPU-Accelerated applications
-   Life Sciences, Manufacturing, Physics, Oil and Gas
-
-10. GPU Accelerated Libraries
-   1. Deep Learning =cuDNN
-   2. 
-
-11. What is OpenACC? - Programming model for an easy onramp to GPUs
-
-12. Nvidia Deep Learning Software Stack
-   1. Training (Caffe2, Chainer, mxnet, tensorflow, pytorch, theano, microsoft cognitive toolkit)
-   2. Inference (Data Center, TensorRT, Embedded, JETPACK SDK, Automotive, DriveWorks SDK)
-   3. Nvidia Deep Learning SDK and Cuda (cuDNN, NCCL, cuBLAS, TensorRT, cuSPARSE, DeepStreamDSK)
-13. RAPIDS- Open GPU Data Science (Software Stack Python)
-   US Census dataset (predict income): 45k rows, 10k cols, H2O.ai ML- Generalized Linear Modeling
-
-14. Challendes Utilizing AI & HPC Software
-   1. Installation - Complex, time consuming and error prone
-   2. Optimization - Requires expertise to optimize framework
-   3. Maintenance
-   4. Productivity
-
-15. NGC Software Hub - GPU Optimized Software Hub
-
-
-### Introduction to OpenAcc
-https://app.linuxacademy.com/hands-on-labs/bddbc6db-9bb1-4b9d-96ed-4cf85e37e632
-
-
-
-### Lecture 2 Outline : 
-
-1. CPU and GPU Memories
-2. Cuda Unified Memory
-
-
-
+6. Assessment (60 min)
+   1. Assessment project: train and deploy a deep neural network
+7. Next Steps (15 mins)
+   1. Workshop survey
+   2. Setting up your own GPU-enabled environment
+   3. Additional project ideas
 
